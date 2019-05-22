@@ -4,7 +4,7 @@
 #
 Name     : NetworkManager-vpnc
 Version  : 1.2.6
-Release  : 3
+Release  : 4
 URL      : https://download.gnome.org/sources/NetworkManager-vpnc/1.2/NetworkManager-vpnc-1.2.6.tar.xz
 Source0  : https://download.gnome.org/sources/NetworkManager-vpnc/1.2/NetworkManager-vpnc-1.2.6.tar.xz
 Summary  : NetworkManager VPN plugin for VPNC
@@ -15,6 +15,7 @@ Requires: NetworkManager-vpnc-lib = %{version}-%{release}
 Requires: NetworkManager-vpnc-libexec = %{version}-%{release}
 Requires: NetworkManager-vpnc-license = %{version}-%{release}
 Requires: NetworkManager-vpnc-locales = %{version}-%{release}
+Requires: vpnc
 BuildRequires : buildreq-gnome
 BuildRequires : gettext
 BuildRequires : intltool
@@ -88,7 +89,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557021517
+export SOURCE_DATE_EPOCH=1558568289
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -107,7 +108,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1557021517
+export SOURCE_DATE_EPOCH=1558568289
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/NetworkManager-vpnc
 cp COPYING %{buildroot}/usr/share/package-licenses/NetworkManager-vpnc/COPYING
