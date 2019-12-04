@@ -4,7 +4,7 @@
 #
 Name     : NetworkManager-vpnc
 Version  : 1.2.6
-Release  : 4
+Release  : 5
 URL      : https://download.gnome.org/sources/NetworkManager-vpnc/1.2/NetworkManager-vpnc-1.2.6.tar.xz
 Source0  : https://download.gnome.org/sources/NetworkManager-vpnc/1.2/NetworkManager-vpnc-1.2.6.tar.xz
 Summary  : NetworkManager VPN plugin for VPNC
