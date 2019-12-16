@@ -4,7 +4,7 @@
 #
 Name     : NetworkManager-vpnc
 Version  : 1.2.6
-Release  : 5
+Release  : 6
 URL      : https://download.gnome.org/sources/NetworkManager-vpnc/1.2/NetworkManager-vpnc-1.2.6.tar.xz
 Source0  : https://download.gnome.org/sources/NetworkManager-vpnc/1.2/NetworkManager-vpnc-1.2.6.tar.xz
 Summary  : NetworkManager VPN plugin for VPNC
@@ -25,12 +25,9 @@ BuildRequires : pkgconfig(NetworkManager)
 BuildRequires : pkgconfig(glib-2.0)
 BuildRequires : pkgconfig(gtk+-3.0)
 BuildRequires : pkgconfig(libnm)
-BuildRequires : pkgconfig(libnm-glib)
-BuildRequires : pkgconfig(libnm-glib-vpn)
-BuildRequires : pkgconfig(libnm-gtk)
-BuildRequires : pkgconfig(libnm-util)
 BuildRequires : pkgconfig(libnma)
 BuildRequires : pkgconfig(libsecret-1)
+BuildRequires : vpnc
 
 %description
 Client for Cisco IPsec virtual private networks
@@ -83,13 +80,15 @@ locales components for the NetworkManager-vpnc package.
 
 %prep
 %setup -q -n NetworkManager-vpnc-1.2.6
+cd %{_builddir}/NetworkManager-vpnc-1.2.6
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1558568289
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1576104385
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -97,21 +96,21 @@ export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
-%configure --disable-static
+%configure --disable-static --without-libnm-glib
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1558568289
+export SOURCE_DATE_EPOCH=1576104385
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/NetworkManager-vpnc
-cp COPYING %{buildroot}/usr/share/package-licenses/NetworkManager-vpnc/COPYING
+cp %{_builddir}/NetworkManager-vpnc-1.2.6/COPYING %{buildroot}/usr/share/package-licenses/NetworkManager-vpnc/7231584ac45906565081b89c0ca8d5fe7f738eb0
 %make_install
 %find_lang NetworkManager-vpnc
 
@@ -129,7 +128,6 @@ cp COPYING %{buildroot}/usr/share/package-licenses/NetworkManager-vpnc/COPYING
 %defattr(-,root,root,-)
 /usr/lib64/NetworkManager/libnm-vpn-plugin-vpnc-editor.so
 /usr/lib64/NetworkManager/libnm-vpn-plugin-vpnc.so
-/usr/lib64/NetworkManager/libnm-vpnc-properties.so
 
 %files libexec
 %defattr(-,root,root,-)
@@ -139,7 +137,7 @@ cp COPYING %{buildroot}/usr/share/package-licenses/NetworkManager-vpnc/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/NetworkManager-vpnc/COPYING
+/usr/share/package-licenses/NetworkManager-vpnc/7231584ac45906565081b89c0ca8d5fe7f738eb0
 
 %files locales -f NetworkManager-vpnc.lang
 %defattr(-,root,root,-)
