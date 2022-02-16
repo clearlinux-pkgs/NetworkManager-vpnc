@@ -4,3 +4,4 @@ libnm-glib
 libnm-glib-vpn
 libnm-gtk
 libnm-util
+NetworkManager

@@ -4,7 +4,7 @@
 #
 Name     : NetworkManager-vpnc
 Version  : 1.2.6
-Release  : 8
+Release  : 9
 URL      : https://download.gnome.org/sources/NetworkManager-vpnc/1.2/NetworkManager-vpnc-1.2.6.tar.xz
 Source0  : https://download.gnome.org/sources/NetworkManager-vpnc/1.2/NetworkManager-vpnc-1.2.6.tar.xz
 Summary  : No detailed summary available
@@ -21,13 +21,11 @@ BuildRequires : gettext
 BuildRequires : intltool
 BuildRequires : intltool-dev
 BuildRequires : perl(XML::Parser)
-BuildRequires : pkgconfig(NetworkManager)
 BuildRequires : pkgconfig(glib-2.0)
 BuildRequires : pkgconfig(gtk+-3.0)
 BuildRequires : pkgconfig(libnm)
 BuildRequires : pkgconfig(libnma)
 BuildRequires : pkgconfig(libsecret-1)
-BuildRequires : vpnc
 
 %description
 Client for Cisco IPsec virtual private networks
@@ -87,15 +85,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1586242989
+export SOURCE_DATE_EPOCH=1645045294
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %configure --disable-static --without-libnm-glib
 make  %{?_smp_mflags}
 
@@ -104,10 +102,10 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1586242989
+export SOURCE_DATE_EPOCH=1645045294
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/NetworkManager-vpnc
 cp %{_builddir}/NetworkManager-vpnc-1.2.6/COPYING %{buildroot}/usr/share/package-licenses/NetworkManager-vpnc/7231584ac45906565081b89c0ca8d5fe7f738eb0
