@@ -4,7 +4,7 @@
 #
 Name     : NetworkManager-vpnc
 Version  : 1.2.8
-Release  : 12
+Release  : 13
 URL      : https://download.gnome.org/sources/NetworkManager-vpnc/1.2/NetworkManager-vpnc-1.2.8.tar.xz
 Source0  : https://download.gnome.org/sources/NetworkManager-vpnc/1.2/NetworkManager-vpnc-1.2.8.tar.xz
 Summary  : No detailed summary available
@@ -88,7 +88,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1647884670
+export SOURCE_DATE_EPOCH=1664161389
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -108,10 +108,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1647884670
+export SOURCE_DATE_EPOCH=1664161389
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/NetworkManager-vpnc
-cp %{_builddir}/NetworkManager-vpnc-1.2.8/COPYING %{buildroot}/usr/share/package-licenses/NetworkManager-vpnc/7231584ac45906565081b89c0ca8d5fe7f738eb0
+cp %{_builddir}/NetworkManager-vpnc-%{version}/COPYING %{buildroot}/usr/share/package-licenses/NetworkManager-vpnc/7231584ac45906565081b89c0ca8d5fe7f738eb0 || :
 %make_install
 %find_lang NetworkManager-vpnc
 
